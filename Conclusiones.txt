@@ -1,0 +1,10 @@
+Para estos casos de prueba en la web, siempre utilizaremos los componentes de la paginas web por lo que es importante localizarlos,
+teniendo en cuenta que como buena practica trataremos de trabajar estos componentes con el ID que tengan asignado, con el fin tener 
+un localizador fijo que sea indiferente a los campos que se realicen en la página, teniendo como última pero no menos funcional opción 
+el localizador xPath ya que este suele estar mas sujeto a futuros cambios de la página.
+También es importante realizar primero una prueba manual para saber la lógica del negocio y como vamos a ejecutar las futuras pruebas automatizadas, 
+adicional se debe tener en cuenta trabajar con esperas explicitas ya que son necesarias para evitar la caída del test en caso de que se necesite 
+esperar una condición especifica, también verificar si existe alertas o popup en la página, ya que estas dificultan a las pruebas encontrar los
+siguientes localizadores de componentes a utilizarse, por lo cual es importante saber cómo manejar estas alertas.
+Al trabajar con serenityBDD garantizamos una mejor legibilidad y mantenibilidad del código en caso de tener que realizar cambios adicionales que afecte 
+a la estructura de las pruebas, por ejemplo, proyectos más complejos donde están contantemente en cambios.
