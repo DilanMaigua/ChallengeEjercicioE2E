@@ -2,8 +2,6 @@ package com.example.questions.web;
 import static com.example.userinterfaces.pages.DemoblazeHomePage.*;
 import static com.example.userinterfaces.pages.DemoblazePlaceOrder.*;
 
-import com.example.userinterfaces.pages.DemoblazeHomePage;
-import com.example.userinterfaces.pages.DemoblazePlaceOrder;
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.questions.TextContent;
 

@@ -8,6 +8,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
@@ -16,6 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DemoblazeSD {
     private Scenario scenario;
@@ -35,6 +37,8 @@ public class DemoblazeSD {
         theActorCalled(actor).attemptsTo(
         NavigateTo.demoblazePage()
         );
+        Serenity.takeScreenshot();
+
         screenShot();
     }
 
@@ -43,7 +47,10 @@ public class DemoblazeSD {
         theActorInTheSpotlight().attemptsTo(
                 ComprarProducto.forCategory(arg0)
         );
+
         System.out.println("Descripcion del producto a comprar: " + DemoblazeQ.descripcionProducto().answeredBy(theActorInTheSpotlight()));
+        Serenity.takeScreenshot();
+
         screenShot();
     }
 
@@ -60,6 +67,8 @@ public class DemoblazeSD {
         theActorInTheSpotlight().attemptsTo(
                 GenerarCompra.genCompra()
         );
+        Serenity.takeScreenshot();
+
         screenShot();
 
     }
@@ -70,6 +79,8 @@ public class DemoblazeSD {
         theActorInTheSpotlight().attemptsTo(
                 IngresarDatos.ingresoDatos(nombre,pais,ciudad,ccard,mes,anio)
         );
+        Serenity.takeScreenshot();
+
         screenShot();
 
     }
@@ -81,6 +92,7 @@ public class DemoblazeSD {
         );
         System.out.println("Descripcion de la orden de compra: " + DemoblazeQ.descripcionOrdenCompra().answeredBy(theActorInTheSpotlight()));
 
+        Serenity.takeScreenshot();
         screenShot();
 
     }

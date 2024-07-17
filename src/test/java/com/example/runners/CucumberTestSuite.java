@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        plugin = {"json:target/build/cucumber.json"},
+        plugin = {"pretty", "html:target/cucumber-report.html"},
         features = {"src/test/resources/features"},
         glue = "com.example.stepdefinitions",
         tags = "@CompraProductos"
