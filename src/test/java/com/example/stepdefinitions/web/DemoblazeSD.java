@@ -2,6 +2,9 @@ package com.example.stepdefinitions.web;
 
 import com.example.questions.web.DemoblazeQ;
 import com.example.tasks.web.*;
+import java.util.Random;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
@@ -43,10 +46,34 @@ public class DemoblazeSD {
     }
 
     @When("selecciona la categoría {string} y selecciona un producto de la categoría")
-    public void seleccionaLaCategoríaYSeleccionaUnProductoDeLaCategoría(String arg0) {
-        theActorInTheSpotlight().attemptsTo(
-                ComprarProducto.forCategory(arg0)
-        );
+    public void seleccionaLaCategoríaYSeleccionaUnProductoDeLaCategoría(String json) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json);
+
+            String categoria1 = jsonNode.get("category1").asText();
+            String categoria2 = jsonNode.get("category2").asText();
+            String categoria3 = jsonNode.get("category3").asText();
+
+            Random random = new Random();
+            int randomNumber = random.nextInt(3); // Devuelve 0 o 1
+
+            String categoriaSeleccionada;
+            if (randomNumber == 0) {
+                categoriaSeleccionada = categoria1;
+            } else if (randomNumber == 1) {
+                categoriaSeleccionada = categoria2;
+            } else {
+                categoriaSeleccionada = categoria3;
+            }
+
+            theActorInTheSpotlight().attemptsTo(
+                   ComprarProducto.forCategory(categoriaSeleccionada)
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.println("Descripcion del producto a comprar: " + DemoblazeQ.descripcionProducto().answeredBy(theActorInTheSpotlight()));
         Serenity.takeScreenshot();
@@ -74,16 +101,6 @@ public class DemoblazeSD {
     }
 
 
-    @When("ingresa los datos al formulario con nombre {string}, país {string}, ciudad {string}, tarjeta de crédito {string}, mes {string}, y año {string}")
-    public void ingresaLosDatosAlFormularioConNombrePaísCiudadTarjetaDeCréditoMesYAñoYear(String nombre,String pais, String ciudad, String ccard, String mes, String anio) {
-        theActorInTheSpotlight().attemptsTo(
-                IngresarDatos.ingresoDatos(nombre,pais,ciudad,ccard,mes,anio)
-        );
-        Serenity.takeScreenshot();
-
-        screenShot();
-
-    }
 
     @Then("finaliza la compra y verifica la compra")
     public void finalizaLaCompraYVerificaLaCompra() {
@@ -102,5 +119,26 @@ public class DemoblazeSD {
         this.scenario.attach(evidencia, "image/png", "evidencias");
     }
 
+
+    @When("ingresa los datos al formulario {string}")
+    public void ingresaLosDatosAlFormulario(String json) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(json);
+
+            String name = jsonNode.get("name").asText();
+            String country = jsonNode.get("country").asText();
+            String city = jsonNode.get("city").asText();
+            String ccard = jsonNode.get("ccard").asText();
+            String month = jsonNode.get("month").asText();
+            String year = jsonNode.get("year").asText();
+            theActorInTheSpotlight().attemptsTo(
+                    IngresarDatos.ingresoDatos(name,country,city,ccard,month,year)
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

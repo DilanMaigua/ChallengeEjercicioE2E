@@ -37,8 +37,6 @@ public class IngresarDatos implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                WaitUntil.the(DemoblazeHomePage.BTN_PlaceOrder, isVisible()).forNoMoreThan(10).seconds(),
-                Click.on(DemoblazeHomePage.BTN_PlaceOrder),
                 WaitUntil.the(DemoblazePlaceOrder.txt_nombre, isVisible()).forNoMoreThan(10).seconds(),
                 Enter.theValue(nombre).into(DemoblazePlaceOrder.txt_nombre),
                 Enter.theValue(pais).into(DemoblazePlaceOrder.txt_pais),
