@@ -1,0 +1,20 @@
+{
+  "examples": [
+    {
+      "name": "Dilan",
+      "country": "Ecuador",
+      "city": "Quito",
+      "ccard": "111114444777",
+      "month": "julio",
+      "year": "2024"
+    },
+    {
+      "name": "Jose",
+      "country": "Peru",
+      "city": "Lima",
+      "ccard": "154871521544",
+      "month": "julio",
+      "year": "2024"
+    }
+  ]
+}

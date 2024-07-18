@@ -8,3 +8,6 @@ esperar una condición especifica, también verificar si existe alertas o popup 
 siguientes localizadores de componentes a utilizarse, por lo cual es importante saber cómo manejar estas alertas.
 Al trabajar con serenityBDD garantizamos una mejor legibilidad y mantenibilidad del código en caso de tener que realizar cambios adicionales que afecte 
 a la estructura de las pruebas, por ejemplo, proyectos más complejos donde están contantemente en cambios.
+Al implementar escenario outline donde se trabaja con archivos de tipo json para el consumo de datos, tendremos un esquema
+del proyecto mas facil de entender y a su vez sencillo al momento de realizar cambios al momento de querer trabajar con otros
+datos en los escenarios.

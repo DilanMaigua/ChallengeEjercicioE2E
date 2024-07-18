@@ -2,6 +2,9 @@ package com.example.stepdefinitions.web;
 
 import com.example.questions.web.DemoblazeQ;
 import com.example.tasks.web.*;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Random;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,16 +43,15 @@ public class DemoblazeSD {
         theActorCalled(actor).attemptsTo(
         NavigateTo.demoblazePage()
         );
-        Serenity.takeScreenshot();
-
         screenShot();
     }
 
     @When("selecciona la categoría {string} y selecciona un producto de la categoría")
     public void seleccionaLaCategoríaYSeleccionaUnProductoDeLaCategoría(String json) {
         try {
+            String jsonContent = new String(Files.readAllBytes(Paths.get("src/test/resources/" + json)));
             ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(json);
+            JsonNode jsonNode = objectMapper.readTree(jsonContent);
 
             String categoria1 = jsonNode.get("category1").asText();
             String categoria2 = jsonNode.get("category2").asText();
@@ -76,7 +78,6 @@ public class DemoblazeSD {
         }
 
         System.out.println("Descripcion del producto a comprar: " + DemoblazeQ.descripcionProducto().answeredBy(theActorInTheSpotlight()));
-        Serenity.takeScreenshot();
 
         screenShot();
     }
@@ -94,7 +95,6 @@ public class DemoblazeSD {
         theActorInTheSpotlight().attemptsTo(
                 GenerarCompra.genCompra()
         );
-        Serenity.takeScreenshot();
 
         screenShot();
 
@@ -109,7 +109,6 @@ public class DemoblazeSD {
         );
         System.out.println("Descripcion de la orden de compra: " + DemoblazeQ.descripcionOrdenCompra().answeredBy(theActorInTheSpotlight()));
 
-        Serenity.takeScreenshot();
         screenShot();
 
     }
@@ -120,18 +119,20 @@ public class DemoblazeSD {
     }
 
 
-    @When("ingresa los datos al formulario {string}")
-    public void ingresaLosDatosAlFormulario(String json) {
+    @When("ingresa los datos del indice {int} al formulario {string}")
+    public void ingresaLosDatosDelIndiceAlFormulario(int index, String json) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(json);
 
-            String name = jsonNode.get("name").asText();
-            String country = jsonNode.get("country").asText();
-            String city = jsonNode.get("city").asText();
-            String ccard = jsonNode.get("ccard").asText();
-            String month = jsonNode.get("month").asText();
-            String year = jsonNode.get("year").asText();
+            String jsonContent = new String(Files.readAllBytes(Paths.get("src/test/resources/" + json)));
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode ruta = objectMapper.readTree(jsonContent);
+            JsonNode indexJson = ruta.get("examples").get(index);
+            String name = indexJson.get("name").asText();
+            String country = indexJson.get("country").asText();
+            String city = indexJson.get("city").asText();
+            String ccard = indexJson.get("ccard").asText();
+            String month = indexJson.get("month").asText();
+            String year = indexJson.get("year").asText();
             theActorInTheSpotlight().attemptsTo(
                     IngresarDatos.ingresoDatos(name,country,city,ccard,month,year)
             );

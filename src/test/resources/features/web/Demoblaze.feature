@@ -8,10 +8,10 @@ Feature: Comprar dos productos en la tienda Demoblaze
         When selecciona la categoría "<jsonCategory>" y selecciona un producto de la categoría
         Then agrega el producto al carrito
         And visualiza el carrito luego genera la compra
-        When ingresa los datos al formulario "<jsonDatos>"
+        When ingresa los datos del indice <index> al formulario "<jsonDatos>"
         Then finaliza la compra y verifica la compra
 
         Examples:
-            | jsonCategory | jsonDatos |
-            |  {\"category1\": \"Laptops\", \"category2\": \"Phones\", \"category3\": \"Monitors\"} | {\"name\": \"Dilan\", \"country\": \"Ecuador\", \"city\": \"Quito\", \"ccard\": \"111114444777\", \"month\": \"julio\", \"year\": \"2024\"} |
-            |  {\"category1\": \"Laptops\", \"category2\": \"Phones\", \"category3\": \"Monitors\"} | {\"name\": \"Dilan\", \"country\": \"Ecuador\", \"city\": \"Quito\", \"ccard\": \"111114444777\", \"month\": \"julio\", \"year\": \"2024\"} |
+            | jsonCategory | index  | jsonDatos |
+            |  archivosJson/jsonCategory.json | 0 | archivosJson/ejemploDatos.json |
+            |  archivosJson/jsonCategory.json | 1 | archivosJson/ejemploDatos.json |

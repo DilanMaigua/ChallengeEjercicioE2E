@@ -24,6 +24,8 @@ public class GenerarCompra implements Task {
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Click.on(BTN_Cart),
+                WaitUntil.the(txt_descripcion1, isVisible()).forNoMoreThan(10).seconds(),
+                WaitUntil.the(txt_descripcion2, isVisible()).forNoMoreThan(10).seconds(),
                 WaitUntil.the(DemoblazeHomePage.BTN_PlaceOrder, isVisible()).forNoMoreThan(10).seconds(),
                 Click.on(DemoblazeHomePage.BTN_PlaceOrder)
         );

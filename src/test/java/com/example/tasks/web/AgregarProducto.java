@@ -1,5 +1,7 @@
 package com.example.tasks.web;
 
+import com.example.userinterfaces.pages.DemoblazeHomePage;
+import com.example.userinterfaces.pages.DemoblazePlaceOrder;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -25,6 +27,7 @@ public class AgregarProducto extends UIInteractionSteps implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
+                WaitUntil.the(BTN_AddCart, isVisible()).forNoMoreThan(10).seconds(),
                 Click.on(BTN_AddCart)
         );
 

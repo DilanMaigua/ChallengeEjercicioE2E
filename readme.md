@@ -15,7 +15,7 @@ Para ejecutar este proyecto de automatización de pruebas, necesitarás tener in
    - Abre una terminal y navega al directorio del proyecto.
    - Ejecuta los siguientes comandos para descargar todas las dependencias necesarias:
     ```sh
-    mvn clean install -U
+    mvn install -U
     ```
 
 ## Instrucciones para Ejecutar los Tests
@@ -38,14 +38,18 @@ Para ejecutar este proyecto de automatización de pruebas, necesitarás tener in
    - Verifica que el tag del test sea el mismo que el del feature que desea ejecutar.
    - Ejecuta el test.
 
+4. **Ejecutar desde terminal**:
+   - Diriguete hacia la terminal del IntellliJ.
+   - Ejcuta el siguiente comando para que limpie y genere los reportes de las pruebas
+    ```sh
+    mvn clean verify
+    ```
+
 ## Locacion de reporte generando en Cucumber
 
-EL reporte generado una vez se ejecute las preubas desde CucumberTestSuite, lo encontraremos en la dirección:
+Los reportes generados se podran ver en las siguientes rutas:
 
  - target/cucumber-report.html
+ - target/serenity/index.html
 
-Ademas en la siguiente dirección: 
-
- - target/site/serenity 
-
-Encontraremos las capturas de pantalla que se realizo como reporte. 
+Encontraremos el reporte generado por serenity y por cucumber.
